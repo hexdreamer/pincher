@@ -1,6 +1,6 @@
 // Pincher
 // AppDelelgate.swift
-// Copyright(c) 2015 Kenny Leung
+// Copyright(c) 2016 Kenny Leung
 // This code is PUBLIC DOMAIN
 
 import UIKit

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B93815631CE5801E004CE389 /* hexdreamsCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */; };
+		B9A7AFF91CE58F44008943BB /* hexdreamsCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B9F68DD11A622D0E00B5B039 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F68DD01A622D0E00B5B039 /* AppDelegate.swift */; };
 		B9F68DD31A622D0E00B5B039 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F68DD21A622D0E00B5B039 /* ViewController.swift */; };
 		B9F68DD61A622D0E00B5B039 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F68DD41A622D0E00B5B039 /* Main.storyboard */; };
@@ -17,26 +19,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B977F0791AA538DA0031B394 /* PBXContainerItemProxy */ = {
+		B938155D1CE58004004CE389 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B9F68DFA1A622DB600B5B039 /* HexdreamsCocoa.xcodeproj */;
+			containerPortal = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B9218AEE1CC887A000A97389;
+			remoteInfo = hexdreamsCocoa;
+		};
+		B938155F1CE58004004CE389 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B9218AF81CC887A000A97389;
+			remoteInfo = hexdreamsCocoaTests;
+		};
+		B93815611CE58017004CE389 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = B93783611A2AE9B800269C07;
-			remoteInfo = HexdreamsCocoa;
-		};
-		B97DDA591AA535420067CA32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B9F68DFA1A622DB600B5B039 /* HexdreamsCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B93783621A2AE9B800269C07;
-			remoteInfo = HexdreamsCocoa;
-		};
-		B97DDA5B1AA535420067CA32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B9F68DFA1A622DB600B5B039 /* HexdreamsCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B937836D1A2AE9B800269C07;
-			remoteInfo = HexdreamsCocoaTests;
+			remoteGlobalIDString = B9218AED1CC887A000A97389;
+			remoteInfo = hexdreamsCocoa;
 		};
 		B9F68DE11A622D0E00B5B039 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -47,7 +49,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B9A7AFF81CE58F31008943BB /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B9A7AFF91CE58F44008943BB /* hexdreamsCocoa.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hexdreamsCocoa.xcodeproj; path = Submodules/hexdreamsCocoa/iOSProject/hexdreamsCocoa.xcodeproj; sourceTree = "<group>"; };
 		B9F68DCB1A622D0E00B5B039 /* Pincher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pincher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F68DCF1A622D0E00B5B039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9F68DD01A622D0E00B5B039 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +75,6 @@
 		B9F68DE01A622D0E00B5B039 /* PincherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PincherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F68DE51A622D0E00B5B039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9F68DE61A622D0E00B5B039 /* PincherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PincherTests.swift; sourceTree = "<group>"; };
-		B9F68DFA1A622DB600B5B039 /* HexdreamsCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HexdreamsCocoa.xcodeproj; path = ../HexdreamsCocoa/HexdreamsCocoaiOS/HexdreamsCocoa.xcodeproj; sourceTree = "<group>"; };
 		B9F68E061A622EC000B5B039 /* PincherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PincherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93815631CE5801E004CE389 /* hexdreamsCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,11 +97,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B97DDA551AA535420067CA32 /* Products */ = {
+		B93815591CE58004004CE389 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B97DDA5A1AA535420067CA32 /* HexdreamsCocoa.framework */,
-				B97DDA5C1AA535420067CA32 /* HexdreamsCocoaTests.xctest */,
+				B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */,
+				B93815601CE58004004CE389 /* hexdreamsCocoaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,7 +109,7 @@
 		B9F68DC21A622D0E00B5B039 = {
 			isa = PBXGroup;
 			children = (
-				B9F68DFA1A622DB600B5B039 /* HexdreamsCocoa.xcodeproj */,
+				B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */,
 				B9F68DCD1A622D0E00B5B039 /* Pincher */,
 				B9F68DE31A622D0E00B5B039 /* PincherTests */,
 				B9F68DCC1A622D0E00B5B039 /* Products */,
@@ -156,12 +173,13 @@
 			buildPhases = (
 				B9F68DC71A622D0E00B5B039 /* Sources */,
 				B9F68DC81A622D0E00B5B039 /* Frameworks */,
+				B9A7AFF81CE58F31008943BB /* Copy Frameworks */,
 				B9F68DC91A622D0E00B5B039 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B977F07A1AA538DA0031B394 /* PBXTargetDependency */,
+				B93815621CE58017004CE389 /* PBXTargetDependency */,
 			);
 			name = Pincher;
 			productName = Pincher;
@@ -192,11 +210,14 @@
 		B9F68DC31A622D0E00B5B039 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Hexdreams;
 				TargetAttributes = {
 					B9F68DCA1A622D0E00B5B039 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = S4K89S6LAE;
 					};
 					B9F68DDF1A622D0E00B5B039 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -217,8 +238,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = B97DDA551AA535420067CA32 /* Products */;
-					ProjectRef = B9F68DFA1A622DB600B5B039 /* HexdreamsCocoa.xcodeproj */;
+					ProductGroup = B93815591CE58004004CE389 /* Products */;
+					ProjectRef = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -230,18 +251,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		B97DDA5A1AA535420067CA32 /* HexdreamsCocoa.framework */ = {
+		B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = HexdreamsCocoa.framework;
-			remoteRef = B97DDA591AA535420067CA32 /* PBXContainerItemProxy */;
+			path = hexdreamsCocoa.framework;
+			remoteRef = B938155D1CE58004004CE389 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B97DDA5C1AA535420067CA32 /* HexdreamsCocoaTests.xctest */ = {
+		B93815601CE58004004CE389 /* hexdreamsCocoaTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = HexdreamsCocoaTests.xctest;
-			remoteRef = B97DDA5B1AA535420067CA32 /* PBXContainerItemProxy */;
+			path = hexdreamsCocoaTests.xctest;
+			remoteRef = B938155F1CE58004004CE389 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -288,10 +309,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B977F07A1AA538DA0031B394 /* PBXTargetDependency */ = {
+		B93815621CE58017004CE389 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = HexdreamsCocoa;
-			targetProxy = B977F0791AA538DA0031B394 /* PBXContainerItemProxy */;
+			name = hexdreamsCocoa;
+			targetProxy = B93815611CE58017004CE389 /* PBXContainerItemProxy */;
 		};
 		B9F68DE21A622D0E00B5B039 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -340,6 +361,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -354,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -391,7 +413,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,9 +425,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pincher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hexdreams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -413,9 +439,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pincher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hexdreams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -423,16 +453,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = PincherTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hexdreams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pincher.app/Pincher";
 			};
@@ -442,12 +470,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PincherTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hexdreams.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pincher.app/Pincher";
 			};

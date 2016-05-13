@@ -1,10 +1,10 @@
 // Pincher
 // PincherView.swift
-// Copyright(c) 2015 Kenny Leung
+// Copyright(c) 2016 Kenny Leung
 // This code is PUBLIC DOMAIN
 
 import UIKit
-import HexdreamsCocoa
+import hexdreamsCocoa
 
 class PincherView: UIView {
     
@@ -47,21 +47,23 @@ class PincherView: UIView {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
-        self.imageLayer = CALayer()
+    required init?(coder aDecoder: NSCoder) {
+        let layer = CALayer();
+
+        self.imageLayer = layer
         super.init(coder: aDecoder)
         self.multipleTouchEnabled = true
-        self.layer.addSublayer(self.imageLayer)
+        self.layer.addSublayer(layer)
     }
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if touch1 != nil && touch2 != nil {
             return
         }
         
         for obj in touches {
-            let touch :UITouch = obj as! UITouch
+            let touch :UITouch = obj 
             let touchLoc = touch.locationInView(self)
             
             if self.touch1 == nil {
@@ -85,9 +87,9 @@ class PincherView: UIView {
     }
     
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for obj in touches {
-            let touch :UITouch = obj as! UITouch
+            let touch :UITouch = obj 
             
             if self.touch1 == touch {
                 p1p = CGPointApplyAffineTransform(touch.locationInView(self), self._backNormalizeTransform())
@@ -107,7 +109,7 @@ class PincherView: UIView {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.touch1 != nil && touches.contains(self.touch1!) {
             self.touch1 = nil
             self.p1 = nil
@@ -123,10 +125,6 @@ class PincherView: UIView {
         if ( self.touchesUpdated != nil ) {
             self.touchesUpdated(self)
         }
-    }
-    
-    override func touchesCancelled(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.touchesEnded(touches, withEvent: event)
     }
     
     func reset() {
@@ -167,9 +165,9 @@ class PincherView: UIView {
     private func _adjustScaleForBoundsChange() {
         let cgimage = self.image!.CGImage
         let r = CGRectMake(0, 0, CGFloat(CGImageGetWidth(cgimage)), CGFloat(CGImageGetHeight(cgimage)))
-        var oldIdeal = r.scaleAndCenterIn(self.oldBounds!)
-        var newIdeal = r.scaleAndCenterIn(self.bounds)
-        var s = newIdeal.height / oldIdeal.height
+        let oldIdeal = r.scaleAndCenterIn(self.oldBounds!)
+        let newIdeal = r.scaleAndCenterIn(self.bounds)
+        let s = newIdeal.height / oldIdeal.height
         
         self.imageTransform = CGAffineTransformScale(self.imageTransform!, s, s)
     }

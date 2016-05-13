@@ -3,7 +3,7 @@
 //  PincherTests
 //
 //  Created by Kenny Leung on 1/10/15.
-//  Copyright (c) 2015 Hexdreams. All rights reserved.
+//  Copyright (c) 2016 Hexdreams. All rights reserved.
 //
 
 import UIKit

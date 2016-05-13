@@ -1,0 +1,3 @@
+[submodule "Submodules/hexdreamsCocoa"]
+	path = Submodules/hexdreamsCocoa
+	url = https://github.com/hexdreamer/hexdreamsCocoa.git
