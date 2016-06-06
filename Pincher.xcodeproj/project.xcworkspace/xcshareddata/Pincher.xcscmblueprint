@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B9A4F5C014705000F1DE3C852E39EB93A8947A6B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B9A4F5C014705000F1DE3C852E39EB93A8947A6B" : 0,
+    "5C58CBBBD6264A835FA1696A43B23051B4D929B0" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "27FDEEBA-DFAB-4F9F-96FE-157DE04DC60D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B9A4F5C014705000F1DE3C852E39EB93A8947A6B" : "Pincher\/",
+    "5C58CBBBD6264A835FA1696A43B23051B4D929B0" : "Pincher\/Submodules\/hexdreamsCocoa\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pincher",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pincher.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hexdreamer\/hexdreamsCocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C58CBBBD6264A835FA1696A43B23051B4D929B0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hexdreamer\/pincher.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B9A4F5C014705000F1DE3C852E39EB93A8947A6B"
+    }
+  ]
+}
