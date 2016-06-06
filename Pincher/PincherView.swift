@@ -32,7 +32,7 @@ class PincherView: UIView {
     }
     var imageTransform :CGAffineTransform? {
         didSet {
-            self.backTransform = CGAffineTransformInvert(self.imageTransform!)
+            self.backTransform = self.imageTransform!.invert()
             self.imageLayer!.transform = CATransform3DMakeAffineTransform(self.imageTransform!)
         }
     }
@@ -52,30 +52,30 @@ class PincherView: UIView {
 
         self.imageLayer = layer
         super.init(coder: aDecoder)
-        self.multipleTouchEnabled = true
+        self.isMultipleTouchEnabled = true
         self.layer.addSublayer(layer)
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touch1 != nil && touch2 != nil {
             return
         }
         
         for obj in touches {
             let touch :UITouch = obj 
-            let touchLoc = touch.locationInView(self)
+            let touchLoc = touch.location(in: self)
             
             if self.touch1 == nil {
                 self.touch1 = touch
-                self.p1p = CGPointApplyAffineTransform(touchLoc, self._backNormalizeTransform())
-                self.p1 = CGPointApplyAffineTransform(self.p1p!, self.backTransform!)
+                self.p1p = touchLoc.apply(transform: self._backNormalizeTransform())
+                self.p1 = self.p1p!.apply(transform: self.backTransform!)
                 continue
             }
             if self.touch2 == nil {
                 self.touch2 = touch
-                self.p2p = CGPointApplyAffineTransform(touchLoc, self._backNormalizeTransform())
-                self.p2 = CGPointApplyAffineTransform(self.p2p!, self.backTransform!)
+                self.p2p = touchLoc.apply(transform: self._backNormalizeTransform())
+                self.p2 = self.p2p!.apply(transform: self.backTransform!)
                 continue
             }
         }
@@ -87,15 +87,15 @@ class PincherView: UIView {
     }
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for obj in touches {
             let touch :UITouch = obj 
             
             if self.touch1 == touch {
-                p1p = CGPointApplyAffineTransform(touch.locationInView(self), self._backNormalizeTransform())
+                p1p = touch.location(in: self).apply(transform: self._backNormalizeTransform())
             }
             if self.touch2 == touch {
-                p2p = CGPointApplyAffineTransform(touch.locationInView(self), self._backNormalizeTransform())
+                p2p = touch.location(in: self).apply(transform: self._backNormalizeTransform())
             }
         }
         
@@ -109,7 +109,7 @@ class PincherView: UIView {
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.touch1 != nil && touches.contains(self.touch1!) {
             self.touch1 = nil
             self.p1 = nil
@@ -128,48 +128,56 @@ class PincherView: UIView {
     }
     
     func reset() {
-        if !(self.image != nil && self.imageLayer != nil) {
+        guard
+            let imageLayer = self.imageLayer,
+            let image = self.image,
+            let cgimage = image.cgImage else {
             return
         }
-        
-        let cgimage = self.image!.CGImage
-        let r = CGRectMake(0, 0, CGFloat(CGImageGetWidth(cgimage)), CGFloat(CGImageGetHeight(cgimage)))
-        self.imageLayer!.contents = cgimage;
-        self.imageLayer!.bounds = r
-        self.imageLayer!.position = self.bounds.center
+
+        let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
+        imageLayer.contents = cgimage;
+        imageLayer.bounds = r
+        imageLayer.position = self.bounds.center
         self.imageTransform = self._initialTransform()
     }
     
     private func _normalizeTransform() -> CGAffineTransform {
         let center = self.bounds.center
         
-        return CGAffineTransformMakeTranslation(center.x, center.y)
+        return CGAffineTransform(translationX: center.x, y: center.y)
     }
     
     private func _backNormalizeTransform() -> CGAffineTransform {
-        return CGAffineTransformInvert(self._normalizeTransform());
+        return self._normalizeTransform().invert();
     }
     
     private func _initialTransform() -> CGAffineTransform {
-        if self.image == nil {
-            return CGAffineTransformIdentity;
+        guard
+            let image = self.image,
+            let cgimage = image.cgImage else {
+                return CGAffineTransform.identity;
         }
+
+        let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
+        let s = r.scaleIn(rect: self.bounds)
         
-        let cgimage = self.image!.CGImage
-        let r = CGRectMake(0, 0, CGFloat(CGImageGetWidth(cgimage)), CGFloat(CGImageGetHeight(cgimage)))
-        let s = r.scaleIn(self.bounds)
-        
-        return CGAffineTransformMakeScale(s, s)
+        return CGAffineTransform(scaleX: s, y: s)
     }
     
     private func _adjustScaleForBoundsChange() {
-        let cgimage = self.image!.CGImage
-        let r = CGRectMake(0, 0, CGFloat(CGImageGetWidth(cgimage)), CGFloat(CGImageGetHeight(cgimage)))
-        let oldIdeal = r.scaleAndCenterIn(self.oldBounds!)
-        let newIdeal = r.scaleAndCenterIn(self.bounds)
+        guard
+            let image = self.image,
+            let cgimage = image.cgImage else {
+            return
+        }
+
+        let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
+        let oldIdeal = r.scaleAndCenterIn(rect: self.oldBounds!)
+        let newIdeal = r.scaleAndCenterIn(rect: self.bounds)
         let s = newIdeal.height / oldIdeal.height
         
-        self.imageTransform = CGAffineTransformScale(self.imageTransform!, s, s)
+        self.imageTransform = self.imageTransform!.scaleBy(x: s, y: s)
     }
     
     private func _computeSolutionMatrix() {
@@ -191,8 +199,8 @@ class PincherView: UIView {
         }
         
         if q2 == nil {
-            q2 = CGPointMake(q1p.x + 10, q1p.y + 10)
-            q2 = CGPointApplyAffineTransform(q2, self.backTransform!)
+            q2 = CGPoint(x: q1p.x + 10, y: q1p.y + 10)
+            q2 = q2.apply(transform: self.backTransform!)
         }
         
         let x1 = Double(q1.x)
@@ -221,7 +229,7 @@ class PincherView: UIView {
         } else if self.p2p != nil {
             q1p = self.p2p
         } else {
-            return CGAffineTransformIdentity
+            return CGAffineTransform.identity
         }
         
         if ( q2p == nil ) {
@@ -240,7 +248,7 @@ class PincherView: UIView {
             ])
         let C = self.solutionMatrix! ⋅ B
         
-        var t :CGAffineTransform = CGAffineTransformIdentity
+        var t :CGAffineTransform = CGAffineTransform.identity
         let U = CGFloat(C[0,0])
         let V = CGFloat(C[1,0])
         let tx = CGFloat(C[2,0])
