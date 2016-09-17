@@ -32,7 +32,7 @@ class PincherView: UIView {
     }
     var imageTransform :CGAffineTransform? {
         didSet {
-            self.backTransform = self.imageTransform!.invert()
+            self.backTransform = self.imageTransform!.inverted()
             self.imageLayer!.transform = CATransform3DMakeAffineTransform(self.imageTransform!)
         }
     }
@@ -68,14 +68,14 @@ class PincherView: UIView {
             
             if self.touch1 == nil {
                 self.touch1 = touch
-                self.p1p = touchLoc.apply(transform: self._backNormalizeTransform())
-                self.p1 = self.p1p!.apply(transform: self.backTransform!)
+                self.p1p = touchLoc.applying(self._backNormalizeTransform())
+                self.p1 = self.p1p!.applying(self.backTransform!)
                 continue
             }
             if self.touch2 == nil {
                 self.touch2 = touch
-                self.p2p = touchLoc.apply(transform: self._backNormalizeTransform())
-                self.p2 = self.p2p!.apply(transform: self.backTransform!)
+                self.p2p = touchLoc.applying(self._backNormalizeTransform())
+                self.p2 = self.p2p!.applying(self.backTransform!)
                 continue
             }
         }
@@ -92,10 +92,10 @@ class PincherView: UIView {
             let touch :UITouch = obj 
             
             if self.touch1 == touch {
-                p1p = touch.location(in: self).apply(transform: self._backNormalizeTransform())
+                p1p = touch.location(in: self).applying(self._backNormalizeTransform())
             }
             if self.touch2 == touch {
-                p2p = touch.location(in: self).apply(transform: self._backNormalizeTransform())
+                p2p = touch.location(in: self).applying(self._backNormalizeTransform())
             }
         }
         
@@ -142,17 +142,17 @@ class PincherView: UIView {
         self.imageTransform = self._initialTransform()
     }
     
-    private func _normalizeTransform() -> CGAffineTransform {
+    fileprivate func _normalizeTransform() -> CGAffineTransform {
         let center = self.bounds.center
         
         return CGAffineTransform(translationX: center.x, y: center.y)
     }
     
-    private func _backNormalizeTransform() -> CGAffineTransform {
-        return self._normalizeTransform().invert();
+    fileprivate func _backNormalizeTransform() -> CGAffineTransform {
+        return self._normalizeTransform().inverted();
     }
     
-    private func _initialTransform() -> CGAffineTransform {
+    fileprivate func _initialTransform() -> CGAffineTransform {
         guard
             let image = self.image,
             let cgimage = image.cgImage else {
@@ -165,7 +165,7 @@ class PincherView: UIView {
         return CGAffineTransform(scaleX: s, y: s)
     }
     
-    private func _adjustScaleForBoundsChange() {
+    fileprivate func _adjustScaleForBoundsChange() {
         guard
             let image = self.image,
             let cgimage = image.cgImage else {
@@ -177,10 +177,10 @@ class PincherView: UIView {
         let newIdeal = r.scaleAndCenterIn(rect: self.bounds)
         let s = newIdeal.height / oldIdeal.height
         
-        self.imageTransform = self.imageTransform!.scaleBy(x: s, y: s)
+        self.imageTransform = self.imageTransform!.scaledBy(x: s, y: s)
     }
     
-    private func _computeSolutionMatrix() {
+    fileprivate func _computeSolutionMatrix() {
         var q1  :CGPoint!
         var q1p :CGPoint!
         var q2  :CGPoint!
@@ -200,7 +200,7 @@ class PincherView: UIView {
         
         if q2 == nil {
             q2 = CGPoint(x: q1p.x + 10, y: q1p.y + 10)
-            q2 = q2.apply(transform: self.backTransform!)
+            q2 = q2.applying(self.backTransform!)
         }
         
         let x1 = Double(q1.x)
@@ -217,7 +217,7 @@ class PincherView: UIView {
         self.solutionMatrix = B
     }
     
-    private func _computeCurrentTransform() -> CGAffineTransform {
+    fileprivate func _computeCurrentTransform() -> CGAffineTransform {
         var q1p :CGPoint!
         var q2p :CGPoint!
         
