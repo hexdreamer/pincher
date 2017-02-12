@@ -12,18 +12,18 @@ class PincherView: UIView {
         willSet(newBounds) {
             oldBounds = self.bounds
         } didSet {
-            self.imageLayer!.position = self.bounds.center
+            self.imageLayer!.position = ┼self.bounds
             self._adjustScaleForBoundsChange()
         }
     }
     var oldBounds :CGRect?
     
-    var touch1  :UITouch?
-    var touch2  :UITouch?
-    var p1      :CGPoint?  // point 1 in image coordiate system
-    var p2      :CGPoint?  // point 2 in image coordinate system
-    var p1p     :CGPoint?  // point 1 in view coordinate system
-    var p2p     :CGPoint?  // point 2 in view coordinate system
+    var touch₁  :UITouch?
+    var touch₂  :UITouch?
+    var p₁      :CGPoint?  // point 1 in image coordiate system
+    var p₂      :CGPoint?  // point 2 in image coordinate system
+    var p₁ʹ     :CGPoint?  // point 1 in view coordinate system
+    var p₂ʹ     :CGPoint?  // point 2 in view coordinate system
     var image   :UIImage? {
         didSet {self.reset()}
     }
@@ -58,7 +58,7 @@ class PincherView: UIView {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touch1 != nil && touch2 != nil {
+        if touch₁ != nil && touch₂ != nil {
             return
         }
         
@@ -66,16 +66,16 @@ class PincherView: UIView {
             let touch :UITouch = obj 
             let touchLoc = touch.location(in: self)
             
-            if self.touch1 == nil {
-                self.touch1 = touch
-                self.p1p = touchLoc.applying(self._backNormalizeTransform())
-                self.p1 = self.p1p!.applying(self.backTransform!)
+            if self.touch₁ == nil {
+                self.touch₁ = touch
+                self.p₁ʹ = touchLoc.applying(self._backNormalizeTransform())
+                self.p₁ = self.p₁ʹ!.applying(self.backTransform!)
                 continue
             }
-            if self.touch2 == nil {
-                self.touch2 = touch
-                self.p2p = touchLoc.applying(self._backNormalizeTransform())
-                self.p2 = self.p2p!.applying(self.backTransform!)
+            if self.touch₂ == nil {
+                self.touch₂ = touch
+                self.p₂ʹ = touchLoc.applying(self._backNormalizeTransform())
+                self.p₂ = self.p₂ʹ!.applying(self.backTransform!)
                 continue
             }
         }
@@ -91,11 +91,11 @@ class PincherView: UIView {
         for obj in touches {
             let touch :UITouch = obj 
             
-            if self.touch1 == touch {
-                p1p = touch.location(in: self).applying(self._backNormalizeTransform())
+            if self.touch₁ == touch {
+                p₁ʹ = touch.location(in: self).applying(self._backNormalizeTransform())
             }
-            if self.touch2 == touch {
-                p2p = touch.location(in: self).applying(self._backNormalizeTransform())
+            if self.touch₂ == touch {
+                p₂ʹ = touch.location(in: self).applying(self._backNormalizeTransform())
             }
         }
         
@@ -110,15 +110,15 @@ class PincherView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.touch1 != nil && touches.contains(self.touch1!) {
-            self.touch1 = nil
-            self.p1 = nil
-            self.p1p = nil
+        if self.touch₁ != nil && touches.contains(self.touch₁!) {
+            self.touch₁ = nil
+            self.p₁ = nil
+            self.p₁ʹ = nil
         }
-        if self.touch2 != nil && touches.contains(self.touch2!) {
-            self.touch2 = nil
-            self.p2 = nil
-            self.p2p = nil
+        if self.touch₂ != nil && touches.contains(self.touch₂!) {
+            self.touch₂ = nil
+            self.p₂ = nil
+            self.p₂ʹ = nil
         }
         
         self._computeSolutionMatrix()
@@ -138,12 +138,12 @@ class PincherView: UIView {
         let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
         imageLayer.contents = cgimage;
         imageLayer.bounds = r
-        imageLayer.position = self.bounds.center
+        imageLayer.position = ┼self.bounds
         self.imageTransform = self._initialTransform()
     }
     
     fileprivate func _normalizeTransform() -> CGAffineTransform {
-        let center = self.bounds.center
+        let center = ┼self.bounds
         
         return CGAffineTransform(translationX: center.x, y: center.y)
     }
@@ -181,70 +181,70 @@ class PincherView: UIView {
     }
     
     fileprivate func _computeSolutionMatrix() {
-        var q1  :CGPoint!
-        var q1p :CGPoint!
-        var q2  :CGPoint!
+        var q₁  :CGPoint!
+        var q₁ʹ :CGPoint!
+        var q₂  :CGPoint!
         
-        if self.touch1 != nil && self.touch2 != nil {
-            q1 = self.p1
-            q2 = self.p2
-        } else if self.touch1 != nil {
-            q1 = self.p1
-            q1p = self.p1p
-        } else if self.touch2 != nil {
-            q1 = self.p2
-            q1p = self.p2p
+        if self.touch₁ != nil && self.touch₂ != nil {
+            q₁ = self.p₁
+            q₂ = self.p₂
+        } else if self.touch₁ != nil {
+            q₁ = self.p₁
+            q₁ʹ = self.p₁ʹ
+        } else if self.touch₂ != nil {
+            q₁ = self.p₂
+            q₁ʹ = self.p₂ʹ
         } else {
             return
         }
         
-        if q2 == nil {
-            q2 = CGPoint(x: q1p.x + 10, y: q1p.y + 10)
-            q2 = q2.applying(self.backTransform!)
+        if q₂ == nil {
+            q₂ = CGPoint(x: q₁ʹ.x + 10, y: q₁ʹ.y + 10)
+            q₂ = q₂.applying(self.backTransform!)
         }
         
-        let x1 = Double(q1.x)
-        let y1 = Double(q1.y)
-        let x2 = Double(q2.x)
-        let y2 = Double(q2.y)
+        let x₁ = Double(q₁.x)
+        let y₁ = Double(q₁.y)
+        let x₂ = Double(q₂.x)
+        let y₂ = Double(q₂.y)
         let A = HXMatrix(rows: 4, columns: 4, values:[
-            x1, -y1, 1, 0,
-            y1,  x1, 0, 1,
-            x2, -y2, 1, 0,
-            y2,  x2, 0, 1
+            x₁, -y₁, 1, 0,
+            y₁,  x₁, 0, 1,
+            x₂, -y₂, 1, 0,
+            y₂,  x₂, 0, 1
             ])
         let B = A.inverse()
         self.solutionMatrix = B
     }
     
     fileprivate func _computeCurrentTransform() -> CGAffineTransform {
-        var q1p :CGPoint!
-        var q2p :CGPoint!
+        var q₁ʹ :CGPoint!
+        var q₂ʹ :CGPoint!
         
-        if ( self.p1p != nil && self.p2p != nil ) {
-            q1p = self.p1p
-            q2p = self.p2p
-        } else if self.p1p != nil {
-            q1p = self.p1p
-        } else if self.p2p != nil {
-            q1p = self.p2p
+        if ( self.p₁ʹ != nil && self.p₂ʹ != nil ) {
+            q₁ʹ = self.p₁ʹ
+            q₂ʹ = self.p₂ʹ
+        } else if self.p₁ʹ != nil {
+            q₁ʹ = self.p₁ʹ
+        } else if self.p₂ʹ != nil {
+            q₁ʹ = self.p₂ʹ
         } else {
             return CGAffineTransform.identity
         }
         
-        if ( q2p == nil ) {
-            q2p = CGPoint(x:q1p.x + 10, y:q1p.y + 10)
+        if ( q₂ʹ == nil ) {
+            q₂ʹ = CGPoint(x:q₁ʹ.x + 10, y:q₁ʹ.y + 10)
         }
         
-        let x1p = Double(q1p.x)
-        let y1p = Double(q1p.y)
-        let x2p = Double(q2p.x)
-        let y2p = Double(q2p.y)
+        let x₁ʹ = Double(q₁ʹ.x)
+        let y₁ʹ = Double(q₁ʹ.y)
+        let x₂ʹ = Double(q₂ʹ.x)
+        let y₂ʹ = Double(q₂ʹ.y)
         let B = HXMatrix(rows: 4, columns: 1, values: [
-            x1p,
-            y1p,
-            x2p,
-            y2p
+            x₁ʹ,
+            y₁ʹ,
+            x₂ʹ,
+            y₂ʹ
             ])
         let C = self.solutionMatrix! ⋅ B
         
