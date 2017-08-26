@@ -1,6 +1,6 @@
 // hexdreamsCocoa
 // HXMatrix.swift
-// Copyright © 2016 Kenny Leung
+// Copyright © 2017 Kenny Leung
 // This code is PUBLIC DOMAIN
 
 // Multiplying Matrices

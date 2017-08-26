@@ -1,6 +1,6 @@
 // Pincher
 // PincherView.swift
-// Copyright(c) 2016 Kenny Leung
+// Copyright © 2017 Kenny Leung
 // This code is PUBLIC DOMAIN
 
 import UIKit
@@ -23,14 +23,15 @@ class PincherView: UIView {
     var p₂      :CGPoint?  // point 2 in image coordinate system
     var p₁ʹ     :CGPoint?  // point 1 in view coordinate system
     var p₂ʹ     :CGPoint?  // point 2 in view coordinate system
+    
     var image   :UIImage? {
-        didSet {self.reset()}
+        didSet {self._reset()}
     }
     var imageLayer :CALayer
-    var imageTransform :CGAffineTransform? {
+    var imageTransform :CGAffineTransform {
         didSet {
-            self.backTransform = self.imageTransform!.inverted()
-            self.imageLayer.transform = CATransform3DMakeAffineTransform(self.imageTransform!)
+            self.backTransform = self.imageTransform.inverted()
+            self.imageLayer.transform = CATransform3DMakeAffineTransform(self.imageTransform)
         }
     }
     var backTransform  :CGAffineTransform
@@ -40,6 +41,7 @@ class PincherView: UIView {
         self.oldBounds = CGRect.zero
         let layer = CALayer();
         self.imageLayer = layer
+        self.imageTransform = CGAffineTransform.identity
         self.backTransform = CGAffineTransform.identity
         
         super.init(coder: aDecoder)
@@ -63,7 +65,7 @@ class PincherView: UIView {
                 self.p₂ = p
             }
         }
-        self._computeSolutionMatrix()
+        self.solutionMatrix = self._computeSolutionMatrix()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -99,25 +101,25 @@ class PincherView: UIView {
                 self.p₂ʹ = nil
             }
         }
-        self._computeSolutionMatrix()
+        self.solutionMatrix = self._computeSolutionMatrix()
     }
     
-    func reset() {
+    //MARK: Private Methods
+    
+    private func _reset() {
         guard
             let image = self.image,
             let cgimage = image.cgImage else {
-            return
+                return
         }
-
+        
         let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
         imageLayer.contents = cgimage;
         imageLayer.bounds = r
         imageLayer.position = ┼self.bounds
         self.imageTransform = self._initialTransform()
     }
-    
-    //MARK: Private Methods
-    
+
     private func _normalizeTransform() -> CGAffineTransform {
         let center = ┼self.bounds
         return CGAffineTransform(translationX: center.x, y: center.y)
@@ -128,54 +130,39 @@ class PincherView: UIView {
     }
     
     private func _initialTransform() -> CGAffineTransform {
-        guard
-            let image = self.image,
-            let cgimage = image.cgImage else {
-                return CGAffineTransform.identity;
+        guard let image = self.image, let cgimage = image.cgImage else {
+            return CGAffineTransform.identity;
         }
-
         let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
         let s = r.scaleIn(rect: self.bounds)
         return CGAffineTransform(scaleX: s, y: s)
     }
     
     private func _adjustScaleForBoundsChange() {
-        guard
-            let image = self.image,
-            let cgimage = image.cgImage else {
-                return
+        guard let image = self.image, let cgimage = image.cgImage else {
+            return
         }
-
         let r = CGRect(x:0, y:0, width:cgimage.width, height:cgimage.height)
         let oldIdeal = r.scaleAndCenterIn(rect: self.oldBounds)
         let newIdeal = r.scaleAndCenterIn(rect: self.bounds)
         let s = newIdeal.height / oldIdeal.height
-        self.imageTransform = self.imageTransform!.scaledBy(x: s, y: s)
+        self.imageTransform = self.imageTransform.scaledBy(x: s, y: s)
     }
     
-    private func _computeSolutionMatrix() {
-        var q₁  :CGPoint!
-        var q₁ʹ :CGPoint!
-        var q₂  :CGPoint!
-        
-        if self.touch₁ != nil && self.touch₂ != nil {
-            q₁ = self.p₁
-            q₂ = self.p₂
-        } else if self.touch₁ != nil {
-            q₁ = self.p₁
-            q₁ʹ = self.p₁ʹ
-        } else if self.touch₂ != nil {
-            q₁ = self.p₂
-            q₁ʹ = self.p₂ʹ
-        } else {
-            return
+    private func _computeSolutionMatrix() -> HXMatrix? {
+        if let q₁ = self.p₁, let q₂ = self.p₂ {
+            return _computeSolutionMatrix(q₁, q₂)
+        } else if let q₁ = self.p₁, let q₁ʹ = self.p₁ʹ {
+            let q₂ = CGPoint(x: q₁ʹ.x + 10, y: q₁ʹ.y + 10).applying(self.backTransform)
+            return _computeSolutionMatrix(q₁, q₂)
+        } else if let q₂ = self.p₂, let q₂ʹ = self.p₂ʹ {
+            let q₁ = CGPoint(x: q₂ʹ.x + 10, y: q₂ʹ.y + 10).applying(self.backTransform)
+            return _computeSolutionMatrix(q₂, q₁)
         }
-        
-        if q₂ == nil {
-            q₂ = CGPoint(x: q₁ʹ.x + 10, y: q₁ʹ.y + 10)
-            q₂ = q₂.applying(self.backTransform)
-        }
-        
+        return nil
+    }
+    
+    private func _computeSolutionMatrix(_ q₁:CGPoint, _ q₂:CGPoint) -> HXMatrix {
         let x₁ = Double(q₁.x)
         let y₁ = Double(q₁.y)
         let x₂ = Double(q₂.x)
@@ -186,18 +173,21 @@ class PincherView: UIView {
             x₂, -y₂, 1, 0,
             y₂,  x₂, 0, 1
         ])
-        let B = A.inverse()
-        self.solutionMatrix = B
+        return A.inverse()
     }
     
     private func _computeTransform(_ q₁ʹ:CGPoint, _ q₂ʹ:CGPoint) -> CGAffineTransform {
+        guard let solutionMatrix = self.solutionMatrix else {
+            return CGAffineTransform.identity
+        }
+        
         let B = HXMatrix(rows: 4, columns: 1, values: [
             Double(q₁ʹ.x),
             Double(q₁ʹ.y),
             Double(q₂ʹ.x),
             Double(q₂ʹ.y)
             ])
-        let C = self.solutionMatrix! ⋅ B
+        let C = solutionMatrix ⋅ B
         
         let  U = CGFloat(C[0,0])
         let  V = CGFloat(C[1,0])
@@ -212,4 +202,3 @@ class PincherView: UIView {
         return t
     }
 }
-
