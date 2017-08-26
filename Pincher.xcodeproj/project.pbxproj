@@ -96,14 +96,14 @@
 		B9F68DCD1A622D0E00B5B039 /* Pincher */ = {
 			isa = PBXGroup;
 			children = (
-				B97A4DB91F51FE1D00547B4D /* CGRectExtensions.swift */,
-				B97A4DBA1F51FE1D00547B4D /* HXMatrix.swift */,
 				B9F68E061A622EC000B5B039 /* PincherView.swift */,
+				B97A4DBA1F51FE1D00547B4D /* HXMatrix.swift */,
+				B97A4DB91F51FE1D00547B4D /* CGRectExtensions.swift */,
 				B9F68DD01A622D0E00B5B039 /* AppDelegate.swift */,
 				B9F68DD21A622D0E00B5B039 /* ViewController.swift */,
 				B9F68DD41A622D0E00B5B039 /* Main.storyboard */,
-				B9F68DD71A622D0E00B5B039 /* Images.xcassets */,
 				B9F68DD91A622D0E00B5B039 /* LaunchScreen.xib */,
+				B9F68DD71A622D0E00B5B039 /* Images.xcassets */,
 				B9F68DCE1A622D0E00B5B039 /* Supporting Files */,
 			);
 			path = Pincher;
