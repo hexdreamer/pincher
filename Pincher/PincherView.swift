@@ -4,7 +4,6 @@
 // This code is PUBLIC DOMAIN
 
 import UIKit
-import hexdreamsCocoa
 
 class PincherView: UIView {
     

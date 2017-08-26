@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B93815631CE5801E004CE389 /* hexdreamsCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */; };
-		B9A7AFF91CE58F44008943BB /* hexdreamsCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B97A4DBB1F51FE1D00547B4D /* CGRectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97A4DB91F51FE1D00547B4D /* CGRectExtensions.swift */; };
+		B97A4DBC1F51FE1D00547B4D /* HXMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97A4DBA1F51FE1D00547B4D /* HXMatrix.swift */; };
 		B9F68DD11A622D0E00B5B039 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F68DD01A622D0E00B5B039 /* AppDelegate.swift */; };
 		B9F68DD31A622D0E00B5B039 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F68DD21A622D0E00B5B039 /* ViewController.swift */; };
 		B9F68DD61A622D0E00B5B039 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F68DD41A622D0E00B5B039 /* Main.storyboard */; };
@@ -19,27 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B938155D1CE58004004CE389 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B9218AEE1CC887A000A97389;
-			remoteInfo = hexdreamsCocoa;
-		};
-		B938155F1CE58004004CE389 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B9218AF81CC887A000A97389;
-			remoteInfo = hexdreamsCocoaTests;
-		};
-		B93815611CE58017004CE389 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B9218AED1CC887A000A97389;
-			remoteInfo = hexdreamsCocoa;
-		};
 		B9F68DE11A622D0E00B5B039 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B9F68DC31A622D0E00B5B039 /* Project object */;
@@ -56,7 +35,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B9A7AFF91CE58F44008943BB /* hexdreamsCocoa.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,7 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hexdreamsCocoa.xcodeproj; path = Submodules/hexdreamsCocoa/iOSProject/hexdreamsCocoa.xcodeproj; sourceTree = "<group>"; };
+		B97A4DB91F51FE1D00547B4D /* CGRectExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtensions.swift; sourceTree = "<group>"; };
+		B97A4DBA1F51FE1D00547B4D /* HXMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HXMatrix.swift; sourceTree = "<group>"; };
 		B9F68DCB1A622D0E00B5B039 /* Pincher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pincher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F68DCF1A622D0E00B5B039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9F68DD01A622D0E00B5B039 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B93815631CE5801E004CE389 /* hexdreamsCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,19 +75,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B93815591CE58004004CE389 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */,
-				B93815601CE58004004CE389 /* hexdreamsCocoaTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B9F68DC21A622D0E00B5B039 = {
 			isa = PBXGroup;
 			children = (
-				B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */,
 				B9F68DCD1A622D0E00B5B039 /* Pincher */,
 				B9F68DE31A622D0E00B5B039 /* PincherTests */,
 				B9F68DCC1A622D0E00B5B039 /* Products */,
@@ -128,6 +96,8 @@
 		B9F68DCD1A622D0E00B5B039 /* Pincher */ = {
 			isa = PBXGroup;
 			children = (
+				B97A4DB91F51FE1D00547B4D /* CGRectExtensions.swift */,
+				B97A4DBA1F51FE1D00547B4D /* HXMatrix.swift */,
 				B9F68E061A622EC000B5B039 /* PincherView.swift */,
 				B9F68DD01A622D0E00B5B039 /* AppDelegate.swift */,
 				B9F68DD21A622D0E00B5B039 /* ViewController.swift */,
@@ -179,7 +149,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B93815621CE58017004CE389 /* PBXTargetDependency */,
 			);
 			name = Pincher;
 			productName = Pincher;
@@ -212,7 +181,7 @@
 			attributes = {
 				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Hexdreams;
 				TargetAttributes = {
 					B9F68DCA1A622D0E00B5B039 = {
@@ -238,12 +207,6 @@
 			mainGroup = B9F68DC21A622D0E00B5B039;
 			productRefGroup = B9F68DCC1A622D0E00B5B039 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B93815591CE58004004CE389 /* Products */;
-					ProjectRef = B93815581CE58004004CE389 /* hexdreamsCocoa.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B9F68DCA1A622D0E00B5B039 /* Pincher */,
@@ -251,23 +214,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B938155E1CE58004004CE389 /* hexdreamsCocoa.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = hexdreamsCocoa.framework;
-			remoteRef = B938155D1CE58004004CE389 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B93815601CE58004004CE389 /* hexdreamsCocoaTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = hexdreamsCocoaTests.xctest;
-			remoteRef = B938155F1CE58004004CE389 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B9F68DC91A622D0E00B5B039 /* Resources */ = {
@@ -295,6 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9F68DD31A622D0E00B5B039 /* ViewController.swift in Sources */,
+				B97A4DBB1F51FE1D00547B4D /* CGRectExtensions.swift in Sources */,
+				B97A4DBC1F51FE1D00547B4D /* HXMatrix.swift in Sources */,
 				B9F68DD11A622D0E00B5B039 /* AppDelegate.swift in Sources */,
 				B9F68E071A622EC000B5B039 /* PincherView.swift in Sources */,
 			);
@@ -311,11 +259,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B93815621CE58017004CE389 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = hexdreamsCocoa;
-			targetProxy = B93815611CE58017004CE389 /* PBXContainerItemProxy */;
-		};
 		B9F68DE21A622D0E00B5B039 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B9F68DCA1A622D0E00B5B039 /* Pincher */;
@@ -351,14 +294,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -398,14 +347,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
