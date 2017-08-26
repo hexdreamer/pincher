@@ -1,6 +1,7 @@
 // hexdreamsCocoa
 // HXMatrix.swift
 // Copyright © 2017 Kenny Leung
+// https://github.com/hexdreamer/pincher
 // This code is PUBLIC DOMAIN
 
 // Multiplying Matrices

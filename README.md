@@ -1,5 +1,5 @@
 # pincher
-Sample program illustrating pinch gesture for simultaneously rotating and resizing an image on iOS.
+This is a sample program illustrating the pinch gesture for simultaneously rotating and resizing an image on iOS.
 
 There are various hand-wavy solutions for doing the pinch to resize-rotate gesture that get the job done, but they typically have a disconnected feel between your finger motion and the image underneath. That is, the image will get translated and rotated, but may slide around under your fingers in an unrealistic manner.
 
