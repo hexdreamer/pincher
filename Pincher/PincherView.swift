@@ -81,12 +81,7 @@ class PincherView: UIView {
         
         CATransaction.begin()
         CATransaction.setValue(true, forKey:kCATransactionDisableActions)
-        // Whether you're using 1 finger or 2 fingers
-        if let q₁ʹ = self.p₁ʹ, let q₂ʹ = self.p₂ʹ {
-            self.imageTransform = self._computeTransform(q₁ʹ, q₂ʹ)
-        } else if let q₁ʹ = (self.p₁ʹ != nil ? self.p₁ʹ : self.p₂ʹ) {
-            self.imageTransform = self._computeTransform(q₁ʹ, CGPoint(x:q₁ʹ.x + 10, y:q₁ʹ.y + 10))
-        }
+        self.imageTransform = self._computeTransform()
         CATransaction.commit()
     }
     
@@ -175,6 +170,16 @@ class PincherView: UIView {
             y₂,  x₂, 0, 1
         ])
         return A.inverse()
+    }
+    
+    private func _computeTransform() -> CGAffineTransform {
+        if let q₁ʹ = self.p₁ʹ, let q₂ʹ = self.p₂ʹ {
+            return self._computeTransform(q₁ʹ, q₂ʹ)
+        } else if let q₁ʹ = (self.p₁ʹ != nil ? self.p₁ʹ : self.p₂ʹ) {
+            return self._computeTransform(q₁ʹ, CGPoint(x:q₁ʹ.x + 10, y:q₁ʹ.y + 10))
+        } else {
+            return CGAffineTransform.identity
+        }
     }
     
     private func _computeTransform(_ q₁ʹ:CGPoint, _ q₂ʹ:CGPoint) -> CGAffineTransform {
